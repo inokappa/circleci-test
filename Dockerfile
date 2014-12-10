@@ -7,24 +7,30 @@
 FROM dockerfile/java
  
 # Install ElasticSearch.
+#RUN \
+#  cd /tmp && \
+#  wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.2.1.tar.gz && \
+#  tar xvzf elasticsearch-1.2.1.tar.gz && \
+#  rm -f elasticsearch-1.2.1.tar.gz && \
+#  mv /tmp/elasticsearch-1.2.1 /elasticsearch
+
+#
 RUN \
-  cd /tmp && \
-  wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.2.1.tar.gz && \
-  tar xvzf elasticsearch-1.2.1.tar.gz && \
-  rm -f elasticsearch-1.2.1.tar.gz && \
-  mv /tmp/elasticsearch-1.2.1 /elasticsearch
+  apt-get update && \
+  apt-get -y install ruby2.0 ruby2.0-dev libruby2.0 && \
+  gem install serverspec --no-ri --no-rdoc -V
 
 # Define mountable directories.
-VOLUME ["/data"]
-
-# Define working directory.
-WORKDIR /data
+#VOLUME ["/data"]
+#
+## Define working directory.
+#WORKDIR /data
 
 # Define default command.
-CMD ["/elasticsearch/bin/elasticsearch"]
+#CMD ["/elasticsearch/bin/elasticsearch"]
 
 # Expose ports.
 #   - 9200: HTTP
 #   - 9300: transport
-EXPOSE 9200
-EXPOSE 9300
+#EXPOSE 9200
+#EXPOSE 9300
