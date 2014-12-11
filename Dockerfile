@@ -10,11 +10,12 @@ RUN \
 #
 RUN \
   wget https://opscode-omnibus-packages.s3.amazonaws.com/debian/6/x86_64/chefdk_0.3.5-1_amd64.deb && \
+  dpkg -i chefdk_0.3.5-1_amd64.deb
 #  
 ADD \
   chef-repo /root/chef-repo
 #
-ADD
+ADD \
   chef_apply.sh /
 #
 RUN \
