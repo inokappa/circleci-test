@@ -11,5 +11,5 @@ test:
   override:
     - docker run -i -t -d inokappa/circleci-test /bin/bash ; sleep 3
     - docker ps
-    - echo "cd /root/serverspec && rake ; exit" | docker attach `docker ps -q`
+    - docker attach `docker ps -q`
     - docker ps
