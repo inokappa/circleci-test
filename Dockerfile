@@ -24,6 +24,12 @@ ADD \
 #
 ADD \
   spec /root/serverspec/spec/
+#
+ADD \
+  start.sh /
+#
+RUN \
+  chmod 755 /start.sh
 
 # Define mountable directories.
 #VOLUME ["/data"]
