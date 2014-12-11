@@ -5,9 +5,9 @@ machine:
 dependencies:
   override:
     - docker info
-    - docker build -t inokappa/circlecitest .
+    - docker build -t inokappa/circleci-test .
 
 test:
   override:
-    - docker run -i -t -d inokappa/circlecitest /bin/bash ; sleep 10
-    - echo "cd /root/serverspec && rake" | docker attach `docker ps -q`
+    - docker run -i -t -d inokappa/circleci-test /bin/bash ; sleep 3
+    - echo "cd /root/serverspec && rake ; exit" | docker attach `docker ps -q`
