@@ -1,14 +1,6 @@
 # Pull base image.
 FROM inokappa/wheezy-7.2-basic:latest
  
-# Install ElasticSearch.
-#RUN \
-#  cd /tmp && \
-#  wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.2.1.tar.gz && \
-#  tar xvzf elasticsearch-1.2.1.tar.gz && \
-#  rm -f elasticsearch-1.2.1.tar.gz && \
-#  mv /tmp/elasticsearch-1.2.1 /elasticsearch
-
 #
 RUN \
   apt-get update && \
@@ -17,31 +9,28 @@ RUN \
   gem install rake --no-ri --no-rdoc -V
 #
 RUN \
+  wget https://opscode-omnibus-packages.s3.amazonaws.com/debian/6/x86_64/chefdk_0.3.5-1_amd64.deb && \
+#  
+ADD \
+  chef-repo /root/chef-repo
+#
+ADD
+  chef_apply.sh /
+#
+RUN \
+  chmod 755 /chef_apply.sh
+#
+RUN \
   mkdir /root/serverspec
 #
 ADD \
   Rakefile /root/serverspec/ 
 #
 ADD \
-  spec /root/serverspec/spec/
+  spec /root/serverspec/spec
 #
 ADD \
-  start.sh /
+  spec_start.sh /
 #
 RUN \
-  chmod 755 /start.sh
-
-# Define mountable directories.
-#VOLUME ["/data"]
-#
-## Define working directory.
-#WORKDIR /data
-
-# Define default command.
-#CMD ["/elasticsearch/bin/elasticsearch"]
-
-# Expose ports.
-#   - 9200: HTTP
-#   - 9300: transport
-#EXPOSE 9200
-#EXPOSE 9300
+  chmod 755 /spec_start.sh
