@@ -13,7 +13,7 @@ RUN \
   dpkg -i chefdk_0.3.5-1_amd64.deb
 #  
 ADD \
-  chef-repo /root/chef-repo/
+  chef-solo /root/chef-solo/
 #
 ADD \
   chef_apply.sh /
