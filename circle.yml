@@ -9,5 +9,4 @@ dependencies:
 
 test:
   override:
-    - docker run -i -t inokappa/circleci-test /start.sh ; sleep 3
-    - exit 1
+    - docker run -i -t inokappa/circleci-test /start.sh
