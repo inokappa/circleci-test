@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe package ('ruby') do
-  it { should be_installed } 
+describe file ('/tmp') do
+  it { should be_directory } 
 end
