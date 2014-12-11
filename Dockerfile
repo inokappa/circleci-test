@@ -1,10 +1,5 @@
-# ElasticSearch Dockerfile
-#
-# https://github.com/dockerfile/elasticsearch
-#
- 
 # Pull base image.
-FROM dockerfile/java
+FROM inokappa/wheezy-7.2-basic:latest
  
 # Install ElasticSearch.
 #RUN \
@@ -17,8 +12,18 @@ FROM dockerfile/java
 #
 RUN \
   apt-get update && \
-  apt-get -y install ruby2.0 ruby2.0-dev libruby2.0 && \
-  gem install serverspec --no-ri --no-rdoc -V
+  apt-get -y install ruby1.9.1 && \
+  gem install serverspec --no-ri --no-rdoc -V && \
+  gem install rake --no-ri --no-rdoc -V
+#
+RUN \
+  mkdir /root/serverspec
+#
+ADD \
+  Rakefile /root/serverspec/ 
+#
+ADD \
+  spec /root/serverspec/spec/
 
 # Define mountable directories.
 #VOLUME ["/data"]
