@@ -13,7 +13,7 @@ RUN \
   dpkg -i chefdk_0.3.5-1_amd64.deb
 #  
 ADD \
-  chef-repo /root/chef-repo
+  chef-repo /root/chef-repo/
 #
 ADD \
   chef_apply.sh /
@@ -28,7 +28,7 @@ ADD \
   Rakefile /root/serverspec/ 
 #
 ADD \
-  spec /root/serverspec/spec
+  spec /root/serverspec/spec/
 #
 ADD \
   spec_start.sh /
