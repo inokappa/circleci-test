@@ -5,10 +5,9 @@ machine:
 dependencies:
   override:
     - docker info
-    - docker build -t circleci/elasticsearch .
+    - docker build -t inokappa/circlecitest .
 
 test:
   override:
-    - docker run -i -d -p 9200:9200 circleci/elasticsearch; sleep 10
-    - docker attach `docker ps -q`
-    - pwd
+    - docker run -i -t -d inokappa/circlecitest /bin/bash ; sleep 10
+    - echo "cd /root/serverspec && rake ;exit" | docker attach `docker ps -q`
