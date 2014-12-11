@@ -19,7 +19,8 @@ ADD \
   chef_apply.sh /
 #
 RUN \
-  chmod 755 /chef_apply.sh
+  chmod 755 /chef_apply.sh && \
+  /chef_apply.sh
 #
 RUN \
   mkdir /root/serverspec
