@@ -10,4 +10,4 @@ dependencies:
 test:
   override:
     - docker run -i -t -d inokappa/circlecitest /bin/bash ; sleep 10
-    - echo "cd /root/serverspec && rake ;exit" | docker attach `docker ps -q`
+    - echo "cd /root/serverspec && rake" | docker attach `docker ps -q`
